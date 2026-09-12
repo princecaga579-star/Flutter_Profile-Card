@@ -11,86 +11,126 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const ProfileCard(),
+      title: 'Flutter Activity - Set C',
+      theme: ThemeData(primarySwatch: Colors.teal, fontFamily: 'Arial'),
+      home: const HomePage(),
     );
   }
 }
 
-class ProfileCard extends StatelessWidget {
-  const ProfileCard({super.key});
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Center(
-        child: Container(
-          width: 475,
-          padding: const EdgeInsets.symmetric(vertical: 35, horizontal: 30),
-          decoration: BoxDecoration(
-            color: Colors.lightBlue,
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              // Profile Icon
-              Container(
-                width: 145,
-                height: 145,
-                decoration: const BoxDecoration(
-                  color: Colors.white,
-                  shape: BoxShape.circle,
-                ),
-                child: const Icon(Icons.person, size: 75, color: Colors.indigo),
-              ),
 
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
               const SizedBox(height: 25),
 
-              // Name
+              // TITLE
               const Text(
-                'Prince Caga',
+                'Flutter Activity - Set C',
                 style: TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
+                  fontSize: 26,
+                  fontWeight: FontWeight.w400,
+                  color: Colors.black87,
                 ),
               ),
 
-              const SizedBox(height: 18),
+              const SizedBox(height: 35),
 
-              // IT Student
+              // FIRST IMAGE
+              ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image.network(
+                  'https://cdn-icons-png.flaticon.com/512/3135/3135755.png',
+                  width: 160,
+                  height: 160,
+                  fit: BoxFit.contain,
+                ),
+              ),
+
+              const SizedBox(height: 10),
+
+              // NAME
               const Text(
-                'IT Student',
-                style: TextStyle(fontSize: 22, color: Colors.white),
+                'Name: Prince Michael Caga',
+                style: TextStyle(fontSize: 20, color: Colors.black54),
               ),
 
               const SizedBox(height: 12),
 
-              // Flutter Developer
+              // COURSE
               const Text(
-                'Flutter Developer',
-                style: TextStyle(fontSize: 22, color: Colors.white),
+                'Course: College of Arts and Sciences Technology',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 18, color: Colors.black54),
               ),
 
-              const SizedBox(height: 25),
+              const SizedBox(height: 12),
 
-              // Email
+              // SECTION
+              const Text(
+                'Section: BSIT-3/Section 1',
+                style: TextStyle(fontSize: 18, color: Colors.black54),
+              ),
+
+              const SizedBox(height: 35),
+
+              // NAVIGATION ROW
               Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  Icon(Icons.email, color: Colors.white, size: 30),
-                  SizedBox(width: 10),
-                  Text(
-                    'prince@example.com',
-                    style: TextStyle(fontSize: 20, color: Colors.white),
-                  ),
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  _navigationItem(Icons.home, 'Home'),
+
+                  _navigationItem(Icons.person, 'Profile'),
+
+                  _navigationItem(Icons.mail, 'Messages'),
+
+                  _navigationItem(Icons.settings, 'Setting'),
+
+                  _navigationItem(Icons.info, 'About'),
                 ],
               ),
+
+              const SizedBox(height: 45),
+
+              // SECOND IMAGE
+              ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image.network(
+                  'https://cdn-icons-png.flaticon.com/512/3135/3135755.png',
+                  width: 190,
+                  height: 190,
+                  fit: BoxFit.contain,
+                ),
+              ),
+
+              const SizedBox(height: 30),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  static Widget _navigationItem(IconData icon, String label) {
+    return Column(
+      children: [
+        Icon(icon, size: 30, color: Colors.teal.shade300),
+
+        const SizedBox(height: 7),
+
+        Text(
+          label,
+          style: TextStyle(fontSize: 14, color: Colors.grey.shade500),
+        ),
+      ],
     );
   }
 }
